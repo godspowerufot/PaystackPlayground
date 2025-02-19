@@ -8,7 +8,7 @@ function payWithPaystack(e) {
   e.preventDefault();
 
   let handler = PaystackPop.setup({
-    key:"pk_live_32fe5ff884e01fba885bb862920e91fec3e75bb4" , // Replace with your public key
+    key: PAYSTACK_KEY , // Replace with your public key
     email: document.getElementById("email-address").value,
     amount: 100 * 100, // Convert NGN to kobo
     currency: 'NGN',
