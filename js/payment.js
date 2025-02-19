@@ -1,23 +1,53 @@
 const paymentForm = document.getElementById('submit');
 paymentForm.addEventListener("click", payWithPaystack, false);
+
+const PAYSTACK_KEY = import.meta.env.VITE_PAYSTACK_KEY;
+
+
 function payWithPaystack(e) {
   e.preventDefault();
-// console.log(process.env.PK)
+
   let handler = PaystackPop.setup({
-    key: process.env.PK, // Replace with your public key
+    key: PAYSTACK_KEY , // Replace with your public key
     email: document.getElementById("email-address").value,
-    amount: 100 * 100, // Convert 1000 NGN to kobo (1000 * 100 = 100000)
+    amount: 100 * 100, // Convert NGN to kobo
     currency: 'NGN',
-    ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
-    // label: "Optional string that replaces customer email"
+    ref: ''+Math.floor((Math.random() * 1000000000) + 1), 
     onClose: function(){
-      alert('Window closed.');
+      alert('Payment window closed.');
     },
     callback: function(response){
-      let message = 'Payment complete! Reference: ' + response.reference;
-      alert(message);
+      // Show modal with transaction reference
+      document.getElementById("payment-ref").textContent = response.reference;
+      document.getElementById("success-modal").style.display = "block";
     }
   });
 
   handler.openIframe();
+}
+
+function closeModal() {
+  document.getElementById("success-modal").style.display = "none";
+}
+console.log(PAYSTACK_KEY);
+
+
+// Modal functionality
+const modal = document.getElementById('event-modal');
+const modalBtn = document.getElementById('modal-btn');
+const closeBtn = document.querySelector('.close');
+
+modalBtn.onclick = function() {
+    modal.style.display = 'flex';
+}
+
+closeBtn.onclick = function() {
+    modal.style.display = 'none';
+}
+
+// Close the modal if the user clicks outside of it
+window.onclick = function(event) {
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
 }
