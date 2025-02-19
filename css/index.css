@@ -5,10 +5,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #C1BFFA;
+  background-color: #0fac17;
   font-family: inter, sans-serif;
 }
-
 .container {
   display: flex;
   flex-direction: column;
@@ -104,7 +103,7 @@ span {
 }
 
 .btn {
-  background-color: #F9E450;
+  background-color: #000000;
   border: 2px solid #1B1B1B;
   box-sizing: border-box;
   border-radius: 16px;
@@ -112,7 +111,7 @@ span {
   text-align: center;
   font-weight: 800;
   margin-top: 20px;
-  
+  color: white;
   width: 141px;
   height: 56px;
   left: 16px;
@@ -137,4 +136,11 @@ span {
 #exit {
   cursor: pointer;
 }
+
+
+
+@media screen and (max-width: 768px) {
+  .container{width:100%}
+}
+
 

@@ -32,3 +32,22 @@ function closeModal() {
 console.log(PAYSTACK_KEY);
 
 
+// Modal functionality
+const modal = document.getElementById('event-modal');
+const modalBtn = document.getElementById('modal-btn');
+const closeBtn = document.querySelector('.close');
+
+modalBtn.onclick = function() {
+    modal.style.display = 'flex';
+}
+
+closeBtn.onclick = function() {
+    modal.style.display = 'none';
+}
+
+// Close the modal if the user clicks outside of it
+window.onclick = function(event) {
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+}
